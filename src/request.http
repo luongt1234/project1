@@ -1,0 +1,19 @@
+GET http://localhost:8080/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsdW9uZyIsImlhdCI6MTc0MjYzODgzMSwiZXhwIjoxNzQyNjM4ODQ2fQ.jYMPa9ROHCdME433-fpZ_OiJwbe1HT_KKQUuAo-2MPs
+
+
+###
+POST http://localhost:8000/login1
+Content-Type: application/json
+
+{
+    "username" : "luong"
+}
+
+###
+POST http://localhost:8000/token 
+Content-Type: application/json
+
+{
+    "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsdW9uZyIsImlhdCI6MTc0MjYzOTAxMCwiZXhwIjoxNzQyNjQyNjEwfQ.DFh_lngT-ifg9GtT_-p1UOm288KwVqqbRYhqZW1FUW4"
+}

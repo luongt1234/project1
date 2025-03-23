@@ -4,6 +4,7 @@ const express = require('express');
 const configViewEngine = require('./config/viewEngine');
 const webRouter = require('./routes/web');
 
+
 const app = express();
 const port = process.env.PORT || 3000;
 const hostName = process.env.HOSTNAME;
@@ -16,7 +17,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 
 app.use('/', webRouter);
+app.use(express.static('public'));
 
 app.listen(port, hostName, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-})
+    console.log(`Server is running on http://localhost:${port}/login`);
+});
+
