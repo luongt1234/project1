@@ -10,17 +10,17 @@
 
     <h2>Login Form</h2>
 
-    <form action="/action_page.php" method="post">
+    <form onsubmit=login(event)>
         <div class="imgcontainer">
             <img src="img_avatar2.png" alt="Avatar" class="avatar">
         </div>
 
         <div class="container">
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <input type="text" id="username" placeholder="Enter Username" name="uname" required>
 
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" id="password" placeholder="Enter Password" name="psw" required>
 
             <button type="submit">Login</button>
             <label>
@@ -35,5 +35,35 @@
     </form>
 
 </body>
+
+<script>
+    async function login(event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        console.log(username, password)
+        try {
+            const response = await fetch('http://localhost:8080/loginAcc', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: username, password: password })
+            });
+
+            const data = await response.json();
+            console.log(data); // Hiển thị token nếu đăng nhập thành công
+
+            if (response.ok) {
+                // alert("Đăng nhập thành công!");
+                localStorage.setItem("token", data.token); // Lưu token vào localStorage
+                window.location.href = "/"; // Chuyển hướng sau khi đăng nhập
+            } else {
+                alert("Đăng nhập thất bại: " + data.message);
+            }
+        } catch (error) {
+            console.error("Lỗi kết nối đến server:", error);
+            alert("Không thể kết nối đến server.");
+        }
+    }
+</script>
 
 </html>

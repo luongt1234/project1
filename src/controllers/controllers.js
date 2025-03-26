@@ -48,6 +48,10 @@ const loginAcc = async (req, res) => {
     }
 }
 
+const homePage = (req, res) =>{
+    res.render('homePage.ejs');
+}
+
 module.exports = {
-    login, signUp, signUpUser, loginAcc
+    login, signUp, signUpUser, loginAcc, homePage
 }
