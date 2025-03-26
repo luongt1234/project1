@@ -1,20 +1,14 @@
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const express = require('express');
+const cors = require('cors');
+const {checkUser, updateRefreshToken} = require('./services/CRUDservice')
 // const {verifyTokenRefresh} = require("./middleware/auth");
 // const configViewEngine = require('./config/viewEngine');
 // const webRouter = require('./routes/web');
 
-
-let Users = [
-    {
-        id: 1,
-        username: 'luong',
-        refreshToken: null
-    }
-]
-
 const app = express();
+app.use(cors());
 const port = process.env.PORT_AUTH || 5000;
 const hostName = process.env.HOSTNAME;
 
@@ -59,28 +53,30 @@ const generateToken = payload => {
 }
 
 const updaterRefreshToken = (username, refreshToken) => {
-    
-    Users = Users.map(user => {
-        if (user.username === username) {
-            return {
-                ...user,
-                refreshToken
-            }
-        }
-        return user;
-    });
+    try {
+        updateRefreshToken(username, refreshToken);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-app.post('/login1', (req, res) => {
+app.post('/test1', async (req, res) => {
     const username = req.body.username;
-    const user = Users.find(user => user.username === username);
-    if (!user) return res.sendStatus(401);
+    const password = req.body.password;
+    await checkUser(username, password);
+    return {username, password}
+});
 
+app.post('/login1',async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    const user = await checkUser(username, password);
+    if (user.length === 0) return res.sendStatus(401);
     // console.log(process.env.ACCESS_TOKEN_SECRET);
 
     const tokens = generateToken(user);
     updaterRefreshToken(username, tokens.accTokenRefresh);
-    console.log(Users);
+    // console.log(user);
     return res.json(tokens);
 });
 

@@ -1,5 +1,6 @@
 const { createUser, checkUser } = require('../services/CRUDservice');
 const notifier = require('node-notifier');
+const axios = require('axios'); // Thư viện gọi API
 // var popupS = require('popups');
 // let alert = require('alert');
 
@@ -37,6 +38,16 @@ const signUpUser = async (req, res) => {
     }
 }
 
+const loginAcc = async (req, res) => {
+    console.log(req.body)
+    try {
+        const response = await axios.post('http://localhost:8000/login1', req.body);
+        res.json(response.data); // Trả token về cho client
+    } catch (error) {
+        res.status(error.response?.status || 500).json({ message: error.response?.data?.message || 'Lỗi đăng nhập' });
+    }
+}
+
 module.exports = {
-    login, signUp, signUpUser
+    login, signUp, signUpUser, loginAcc
 }
