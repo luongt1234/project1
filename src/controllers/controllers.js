@@ -39,7 +39,7 @@ const signUpUser = async (req, res) => {
 }
 
 const loginAcc = async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     try {
         const response = await axios.post('http://localhost:8000/login1', req.body);
         res.json(response.data); // Trả token về cho client
@@ -49,6 +49,7 @@ const loginAcc = async (req, res) => {
 }
 
 const homePage = (req, res) =>{
+    console.log(req.header('Authorization'));
     res.render('homePage.ejs');
 }
 

@@ -1,6 +1,5 @@
 GET http://localhost:8080/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsdW9uZyIsImlhdCI6MTc0MjgyNTc4NSwiZXhwIjoxNzQyODI1ODAwfQ.fooEVYgLi3yCHfx3JFN_Wcamt8l2UM-HBBlgErScNHw
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDMyMTg5ODUsImV4cCI6MTc0MzIxOTAwMH0.PNVQ_pQLoW2ArxulOqptKWj9wFZZH3sVhHmUHTsp8kY
 
 ###
 POST http://localhost:8000/login1
@@ -24,7 +23,8 @@ POST http://localhost:8080/loginAcc
 Content-Type: application/json
 
 {
-    "username" : "luong"
+    "username" : "ahihihi1680@gmail.com",
+    "password" : "123456"
 }
 
 ###
@@ -35,3 +35,7 @@ Content-Type: application/json
     "username" : "ahihihi1680@gmail.com",
     "password" : "12345"
 }
+
+###
+GET http://localhost:8080/homePage
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDMyNDI0MDV9.RgoPiGfqYAy5yZe1CX842w6kAYAbQOm0oYtF6WkBDZw

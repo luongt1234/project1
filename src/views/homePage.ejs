@@ -1,11 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Trang Chủ</title>
 </head>
+
 <body>
-    HomePage
+    <h2>Trang Chủ</h2>
+    <p id="welcome">Đang tải...</p>
+    <button onclick="logout()">Đăng xuất</button>
+
+    <script>
+        // async function verifyToken() {
+        //     const token = localStorage.getItem("token");
+        //     console.log(token);
+        //     if (!token) {
+        //         alert("Bạn chưa đăng nhập!");
+        //         window.location.href = "/login";
+        //         return;
+        //     }
+
+        //     try {
+        //         const response = await fetch("http://localhost:8080/homePage", {
+        //             method: "GET",
+        //             headers: { "Authorization": `Bearer ${token}` }
+        //         });
+
+        //         if (!response.ok) {
+        //             alert("Phiên đăng nhập hết hạn!");
+        //             localStorage.removeItem("token");
+        //             window.location.href = "/login";
+        //             return;
+        //         }
+
+        //         const data = await response.json();
+        //         document.getElementById("welcome").innerText = data.message;
+        //     } catch (error) {
+        //         console.error("Lỗi kết nối:", error);
+        //         alert("Không thể kết nối đến server.");
+        //         window.location.href = "/login";
+        //     }
+        // }
+
+        function logout() {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+        }
+
+        // window.onload = verifyToken;
+    </script>
 </body>
+
 </html>

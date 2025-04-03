@@ -10,12 +10,12 @@ router.get('/signUp', signUp);
 
 router.post('/signUpUser', signUpUser);
 router.post('/loginAcc', loginAcc);
-router.get('/', homePage);
+router.get('/homePage', homePage);
 
-router.get('/posts', verifyToken, (req, res) => {
-    console.log(req.headers.authorization);
-    res.json({posts : 'my posts'});
-});
+// router.get('/posts', verifyToken, (req, res) => {
+//     console.log(req.headers.authorization);
+//     res.json({posts : 'my posts'});
+// });
 
 
 
