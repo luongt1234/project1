@@ -68,10 +68,7 @@
                 return;
             }
 
-            localStorage.setItem("token", data.accToken);
-            console.log("Token đã lưu!", localStorage.getItem("token"));
-
-            window.location.href = "/homePage";
+            window.location.href = "/";
 
         } catch (error) {
             console.error("Lỗi kết nối đến server:", error);

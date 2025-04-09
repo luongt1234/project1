@@ -24,10 +24,10 @@ const refreshToken = (req, res) => {
 const generateToken = payload => {
     const {id, username} = payload;
     const accToken = jwt.sign({id, username}, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '15s'
+        expiresIn: '1h'
     });
     const accTokenRefresh = jwt.sign({id, username}, process.env.REFRESH_TOKEN_SECRET, {
-        expiresIn: '1h'
+        expiresIn: '24h'
     })
     return { accToken, accTokenRefresh };
     // const accToken = jwt.sign({id, username}, process.env.ACCESS_TOKEN_SECRET);

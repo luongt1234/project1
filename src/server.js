@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const configViewEngine = require('./config/viewEngine');
 const webRouter = require('./routes/web');
-
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 
@@ -19,6 +19,7 @@ configViewEngine(app);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
+app.use(cookieParser());
 
 app.use('/', webRouter);
 app.use(express.static('public'));

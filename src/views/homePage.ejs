@@ -44,8 +44,11 @@
         //     }
         // }
 
-        function logout() {
-            localStorage.removeItem("token");
+        async function logout() {
+            const response = await fetch("http://localhost:8080/logout", {
+                method: "Get",
+
+            });
             window.location.href = "/login";
         }
 
